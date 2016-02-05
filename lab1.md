@@ -21,6 +21,8 @@ Some other tips for asking questions is:
   it does not seem nice to just go off on a tangent and start talking about you. A forum is a community, not a place for someone to 
   be selfish.
 
+
+
 ![screenshot from 2016-01-30 02 42 00](https://cloud.githubusercontent.com/assets/16493078/12693195/c13c8474-c6fb-11e5-9bb0-31e8777405d5.png)
 ![capture2](https://cloud.githubusercontent.com/assets/16493078/12704355/6dbb920e-c827-11e5-8f00-c225d63b18a1.PNG)
 ![screenshot from 2016-01-30 03 40 30](https://cloud.githubusercontent.com/assets/16493078/12693751/89e55152-c70c-11e5-8fb2-746cb6d14986.png)
@@ -30,3 +32,8 @@ Some other tips for asking questions is:
 
 ![blockly](https://cloud.githubusercontent.com/assets/16493078/12699949/704867a2-c79d-11e5-9a5f-97cfe2cc6eb8.png)
 
+#Project
+I thought it would be nice to have a chrome extension that would go through a textbook (if it is online) and lecture notes
+from class and detect key words or phrases that appear from the lecture notes in the textbook. This can simplify the search when
+studying and also help students focus on what actually has to be studied. A simple algorithm would be created to figure
+out similar words and phrases. But then I would have to collaborate those words and phrases into a small textbook like structure. 

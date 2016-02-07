@@ -32,6 +32,9 @@ to redistribution of their software. GPLs' on the other hand, like Linux should 
 in order to use for certain devices or programs, including android. Everyone might probably
 need libraries to make other code. 
 
+![capture3](https://cloud.githubusercontent.com/assets/16493078/12875546/9b874054-cdbb-11e5-99c7-88455ec3e2e0.PNG)
+
+
 I think I want to build a project around combining lecture notes with textbook material,
 if the textbooks are online, probably as a chrome extension. I intend to make 
 this under the MIT License since this project is not really too complicated for an Apache License.

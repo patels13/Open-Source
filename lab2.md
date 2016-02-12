@@ -1,4 +1,4 @@
-2.  We need a license in order to give credit to the original makers of the project.Licenses are granted
+2.We need a license in order to give credit to the original makers of the project.Licenses are granted
 to allow usage, and to what degree that use is limited. It can also be used to maintain
 copyright, and who has to exclusive right to own the work. The license also provides a means
 to redistribution and if the work can be redistributed or changed at all. 

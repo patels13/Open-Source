@@ -23,7 +23,7 @@ systems. There can be propriety software released on android. For Linux, the GPL
 anyone who distributes software based on source code under this license, must make
 the originating source code available to the recipient under the same terms. 
 
-SquareMeals will probably have a MIT license.
+SquareMeals will probably have a BSD license.
 
 The GPL seems like a good license for the developer community to view and modify the source code.
 The LGPL mainly consists of libraries so this may be very good for the common good. The Apache/BSD

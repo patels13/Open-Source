@@ -41,3 +41,4 @@ this under the MIT License since this project is not really too complicated for 
 There can be much added to this chrome extension and doesn't really need any restrictions.
 Everybody should be able to use this extension as they wish. And it should be shared
 as much as possible.
+This work is licensed under a http://creativecommons.org/licenses/by/4.0/ Creative Commons Attribution 4.0 International License.

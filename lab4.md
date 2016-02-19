@@ -10,3 +10,6 @@ software running correctly and quickly, reduces frustration, gets new users exci
 
 I learned how to checkout from the svn repository and make changes to the documentation,
 while consulting to the company about these changes.
+
+
+![capture5](https://cloud.githubusercontent.com/assets/16493078/13185142/97b17476-d70d-11e5-9235-bddc82b4d8da.PNG)

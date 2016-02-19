@@ -13,3 +13,7 @@ while consulting to the company about these changes.
 
 
 ![capture5](https://cloud.githubusercontent.com/assets/16493078/13185142/97b17476-d70d-11e5-9235-bddc82b4d8da.PNG)
+
+![capture6](https://cloud.githubusercontent.com/assets/16493078/13185194/d3a3ac24-d70d-11e5-859d-8c89cf684db1.PNG)
+
+

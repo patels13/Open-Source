@@ -4,10 +4,10 @@ mint@mint ~ $ mkdir build-lab
 mint@mint ~ $ cd build-lab
 mint@mint ~/build-lab $ cat > tutorial.cxx
 // A simple program that computes the square root of a number
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include "TutorialConfig.h"
+include <stdio.h>
+include <stdlib.h>
+include <math.h>
+include "TutorialConfig.h"
  
 int main (int argc, char *argv[])
 {
@@ -29,27 +29,27 @@ int main (int argc, char *argv[])
 mint@mint ~/build-lab $ cat > CMakeLists.txt
 cmake_minimum_required (VERSION 2.6)
 project (Tutorial)
-# The version number.
+The version number.
 set (Tutorial_VERSION_MAJOR 1)
 set (Tutorial_VERSION_MINOR 0)
  
-# configure a header file to pass some of the CMake settings
-# to the source code
+ configure a header file to pass some of the CMake settings
+ to the source code
 configure_file (
   "${PROJECT_SOURCE_DIR}/TutorialConfig.h.in"
   "${PROJECT_BINARY_DIR}/TutorialConfig.h"
   )
  
-# add the binary tree to the search path for include files
-# so that we will find TutorialConfig.h
+ add the binary tree to the search path for include files
+ so that we will find TutorialConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
  
-# add the executable
+ add the executable
 add_executable(Tutorial tutorial.cxx)
 mint@mint ~/build-lab $ cat > TutorialConfig.h.in
 // the configured options and settings for Tutorial
-#define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
-#define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
+define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
+define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
 mint@mint ~/build-lab $ ls
 CMakeLists.txt  TutorialConfig.h.in  tutorial.cxx
 mint@mint ~/build-lab $ mkdir step1

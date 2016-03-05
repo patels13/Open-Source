@@ -1,6 +1,6 @@
 
-#PART I
-mint@mint ~ $ mkdir build-lab
+#PART I \n
+mint@mint ~ $ mkdir build-lab \n
 mint@mint ~ $ cd build-lab
 mint@mint ~/build-lab $ cat > tutorial.cxx
 // A simple program that computes the square root of a number

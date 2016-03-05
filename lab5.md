@@ -1,15 +1,17 @@
 
 #PART I 
-mint@mint ~ $ mkdir build-lab 
-
-mint@mint ~ $ cd build-lab
+##int@mint ~ $ cd build-lab
 
 mint@mint ~/build-lab $ cat > tutorial.cxx
 
 // A simple program that computes the square root of a number
+
 include <stdio.h>
+
 include <stdlib.h>
+
 include <math.h>
+
 include "TutorialConfig.h"
  
 int main (int argc, char *argv[])

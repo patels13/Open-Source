@@ -80,7 +80,161 @@ Scanning dependencies of target Tutorial
 Linking CXX executable Tutorial
 [100%] Built target Tutorial
 
+#Part2
 
+####mint@mint ~ $ cd build-lab
+
+####mint@mint ~/build-lab $ ls
+
+CMakeLists.txt  step1  TutorialConfig.h.in  tutorial.cxx
+
+####mint@mint ~/build-lab $ mkdir MathFunctions
+
+####mint@mint ~/build-lab $ cd MathFunctions
+
+####mint@mint ~/build-lab/MathFunctions $ cat > CMakeLists.txt
+
+add_library(MathFunctions mysqrt.cxx)
+
+####mint@mint ~/build-lab/MathFunctions $ cd ..
+
+####mint@mint ~/build-lab $ ls
+
+CMakeLists.txt  MathFunctions  step1  TutorialConfig.h.in  tutorial.cxx
+
+####mint@mint ~/build-lab $ cat > CMakeLists.txt
+
+cmake_minimum_required (VERSION 2.6)
+project (Tutorial)
+The version number.
+set (Tutorial_VERSION_MAJOR 1)
+set (Tutorial_VERSION_MINOR 0)
+ 
+configure_file (
+  "${PROJECT_SOURCE_DIR}/TutorialConfig.h.in"
+  "${PROJECT_BINARY_DIR}/TutorialConfig.h"
+  )
+include_directories ("${PROJECT_SOURCE_DIR}/MathFunctions")
+add_subdirectory (MathFunctions) 
+
+add_executable (Tutorial tutorial.cxx)
+target_link_libraries (Tutorial MathFunctions)
+
+option (USE_MYMATH 
+        "Use tutorial provided math implementation" ON) 
+mint@mint ~/build-lab $ cat > CMakeLists.txt
+cmake_minimum_required (VERSION 2.6)
+project (Tutorial)
+set (Tutorial_VERSION_MAJOR 1)
+set (Tutorial_VERSION_MINOR 0)
+
+configure_file (
+  "${PROJECT_SOURCE_DIR}/TutorialConfig.h.in"
+  "${PROJECT_BINARY_DIR}/TutorialConfig.h"
+  )
+
+option (USE_MYMATH 
+        "Use tutorial provided math implementation" ON) 
+
+
+if (USE_MYMATH)
+  include_directories ("${PROJECT_SOURCE_DIR}/MathFunctions")
+  add_subdirectory (MathFunctions)
+  set (EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)
+endif (USE_MYMATH)
+ 
+add_executable (Tutorial tutorial.cxx)
+target_link_libraries (Tutorial  ${EXTRA_LIBS})
+
+####mint@mint ~/build-lab $ cat > tutorial.cxx
+
+// A simple program that computes the square root of a number
+
+ 
+int main (int argc, char *argv[])
+{
+  if (argc < 2)
+    {
+    fprintf(stdout,"%s Version %d.%d\n", argv[0],
+            Tutorial_VERSION_MAJOR,
+            Tutorial_VERSION_MINOR);
+    fprintf(stdout,"Usage: %s number\n",argv[0]);
+    return 1;
+    }
+ 
+  double inputValue = atof(argv[1]);
+ 
+ifdef USE_MYMATH
+  double outputValue = mysqrt(inputValue);
+else
+  double outputValue = sqrt(inputValue);
+endif
+ 
+  fprintf(stdout,"The square root of %g is %g\n",
+          inputValue, outputValue);
+  return 0;
+}
+
+####mint@mint ~/build-lab $ cat >> TutorialConfig.h.in
+
+####mint@mint ~/build-lab $ cd MathFunctions
+
+####mint@mint ~/build-lab/MathFunctions $ cat > mysqrt.cxx
+
+double absolute(double a)
+{
+  if (a >= 0) return a;
+  else return -a;
+}
+  
+double mysqrt(double x)
+{
+  double guess;
+  if (x < 0) 
+    {
+      //fprintf(stdout, " The number has to be nonnegative %g \n", 0);
+      return 0;
+    }
+  if (x == 0)
+    {
+      //fprintf(stdout,"The square root of 0 is 0 \n");
+      return 0;
+    }
+  guess = x/2.0;
+  while ( absolute((guess*guess)/x - 1.0 ) >= 0.000001)
+    guess  = ((x/guess)+guess)/2;
+  return guess;
+}
+
+####mint@mint ~/build-lab/MathFunctions $ cd ..
+
+####mint@mint ~/build-lab $ ls
+
+CMakeLists.txt  MathFunctions  step1  step2  TutorialConfig.h.in  tutorial.cxx
+
+####mint@mint ~/build-lab $ ls
+
+CMakeLists.txt  MathFunctions  step1  TutorialConfig.h.in  tutorial.cxx
+
+####mint@mint ~/build-lab $ mkdir step2
+
+####mint@mint ~/build-lab $ cd step2
+
+####mint@mint ~/build-lab/step2 $ cmake ..
+
+-- The C compiler identification is GNU 4.8.4
+-- The CXX compiler identification is GNU 4.8.4
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/mint/build-lab/step2
 
 #Part5
 mint@mint ~/build_lab/step_4_5 $ cd ..

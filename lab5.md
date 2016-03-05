@@ -1,17 +1,60 @@
-mint@mint ~ $ ls
-build_lab  Documents  Music     Public     tutorial
-Desktop    Downloads  Pictures  Templates  Videos
-mint@mint ~ $ cd build_lab
-mint@mint ~/build_lab $ ls
+
 #PART I
-
-
-CMakeLists.txt  step1  TutorialConfig.h.in  tutorial.cxx
-mint@mint ~/build_lab $ rmdir step1
-rmdir: failed to remove ‘step1’: Directory not empty
-mint@mint ~/build_lab $ mkdir step_1
-mint@mint ~/build_lab $ cd step_1
-mint@mint ~/build_lab/step_1 $ cmake ..
+mint@mint ~ $ mkdir build-lab
+mint@mint ~ $ cd build-lab
+mint@mint ~/build-lab $ cat > tutorial.cxx
+// A simple program that computes the square root of a number
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "TutorialConfig.h"
+ 
+int main (int argc, char *argv[])
+{
+  if (argc < 2)
+    {
+    fprintf(stdout,"%s Version %d.%d\n",
+            argv[0],
+            Tutorial_VERSION_MAJOR,
+            Tutorial_VERSION_MINOR);
+    fprintf(stdout,"Usage: %s number\n",argv[0]);
+    return 1;
+    }
+  double inputValue = atof(argv[1]);
+  double outputValue = sqrt(inputValue);
+  fprintf(stdout,"The square root of %g is %g\n",
+          inputValue, outputValue);
+  return 0;
+}
+mint@mint ~/build-lab $ cat > CMakeLists.txt
+cmake_minimum_required (VERSION 2.6)
+project (Tutorial)
+# The version number.
+set (Tutorial_VERSION_MAJOR 1)
+set (Tutorial_VERSION_MINOR 0)
+ 
+# configure a header file to pass some of the CMake settings
+# to the source code
+configure_file (
+  "${PROJECT_SOURCE_DIR}/TutorialConfig.h.in"
+  "${PROJECT_BINARY_DIR}/TutorialConfig.h"
+  )
+ 
+# add the binary tree to the search path for include files
+# so that we will find TutorialConfig.h
+include_directories("${PROJECT_BINARY_DIR}")
+ 
+# add the executable
+add_executable(Tutorial tutorial.cxx)
+mint@mint ~/build-lab $ cat > TutorialConfig.h.in
+// the configured options and settings for Tutorial
+#define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
+#define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
+mint@mint ~/build-lab $ ls
+CMakeLists.txt  TutorialConfig.h.in  tutorial.cxx
+mint@mint ~/build-lab $ mkdir step1
+mint@mint ~/build-lab $ cd step1
+mint@mint ~/build-lab/step1 $ cmake ..
 -- The C compiler identification is GNU 4.8.4
 -- The CXX compiler identification is GNU 4.8.4
 -- Check for working C compiler: /usr/bin/cc
@@ -24,15 +67,13 @@ mint@mint ~/build_lab/step_1 $ cmake ..
 -- Detecting CXX compiler ABI info - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/mint/build_lab/step_1
-mint@mint ~/build_lab/step_1 $ make
+-- Build files have been written to: /home/mint/build-lab/step1
+mint@mint ~/build-lab/step1 $ make
 Scanning dependencies of target Tutorial
 [100%] Building CXX object CMakeFiles/Tutorial.dir/tutorial.cxx.o
 Linking CXX executable Tutorial
 [100%] Built target Tutorial
-mint@mint ~/build_lab/step_1 $ cd ..
-mint@mint ~/build_lab $ ls
-CMakeLists.txt  step1  step_1  TutorialConfig.h.in  tutorial.cxx
+
 
 
 #Part5

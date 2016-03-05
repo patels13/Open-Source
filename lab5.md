@@ -1,8 +1,11 @@
 
-#PART I \n
-mint@mint ~ $ mkdir build-lab \n
+#PART I 
+mint@mint ~ $ mkdir build-lab 
+
 mint@mint ~ $ cd build-lab
+
 mint@mint ~/build-lab $ cat > tutorial.cxx
+
 // A simple program that computes the square root of a number
 include <stdio.h>
 include <stdlib.h>
@@ -26,7 +29,9 @@ int main (int argc, char *argv[])
           inputValue, outputValue);
   return 0;
 }
+
 mint@mint ~/build-lab $ cat > CMakeLists.txt
+
 cmake_minimum_required (VERSION 2.6)
 project (Tutorial)
 The version number.
@@ -46,15 +51,23 @@ include_directories("${PROJECT_BINARY_DIR}")
  
  add the executable
 add_executable(Tutorial tutorial.cxx)
+
 mint@mint ~/build-lab $ cat > TutorialConfig.h.in
+
 // the configured options and settings for Tutorial
 define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
 define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
+
 mint@mint ~/build-lab $ ls
+
 CMakeLists.txt  TutorialConfig.h.in  tutorial.cxx
+
 mint@mint ~/build-lab $ mkdir step1
+
 mint@mint ~/build-lab $ cd step1
+
 mint@mint ~/build-lab/step1 $ cmake ..
+
 -- The C compiler identification is GNU 4.8.4
 -- The CXX compiler identification is GNU 4.8.4
 -- Check for working C compiler: /usr/bin/cc
@@ -68,7 +81,9 @@ mint@mint ~/build-lab/step1 $ cmake ..
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/mint/build-lab/step1
+
 mint@mint ~/build-lab/step1 $ make
+
 Scanning dependencies of target Tutorial
 [100%] Building CXX object CMakeFiles/Tutorial.dir/tutorial.cxx.o
 Linking CXX executable Tutorial

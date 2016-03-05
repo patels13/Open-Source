@@ -1,19 +1,15 @@
 
 #PART I 
-##int@mint ~ $ cd build-lab
+####mint@mint ~ $ cd build-lab
 
-mint@mint ~/build-lab $ cat > tutorial.cxx
+####mint@mint ~/build-lab $ cat > tutorial.cxx
 
 // A simple program that computes the square root of a number
 
 include <stdio.h>
-
 include <stdlib.h>
-
 include <math.h>
-
 include "TutorialConfig.h"
- 
 int main (int argc, char *argv[])
 {
   if (argc < 2)
@@ -24,15 +20,8 @@ int main (int argc, char *argv[])
             Tutorial_VERSION_MINOR);
     fprintf(stdout,"Usage: %s number\n",argv[0]);
     return 1;
-    }
-  double inputValue = atof(argv[1]);
-  double outputValue = sqrt(inputValue);
-  fprintf(stdout,"The square root of %g is %g\n",
-          inputValue, outputValue);
-  return 0;
-}
 
-mint@mint ~/build-lab $ cat > CMakeLists.txt
+####mint@mint ~/build-lab $ cat > CMakeLists.txt
 
 cmake_minimum_required (VERSION 2.6)
 project (Tutorial)
@@ -54,21 +43,21 @@ include_directories("${PROJECT_BINARY_DIR}")
  add the executable
 add_executable(Tutorial tutorial.cxx)
 
-mint@mint ~/build-lab $ cat > TutorialConfig.h.in
+####mint@mint ~/build-lab $ cat > TutorialConfig.h.in
 
 // the configured options and settings for Tutorial
 define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
 define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
 
-mint@mint ~/build-lab $ ls
+####mint@mint ~/build-lab $ ls
 
 CMakeLists.txt  TutorialConfig.h.in  tutorial.cxx
 
-mint@mint ~/build-lab $ mkdir step1
+####mint@mint ~/build-lab $ mkdir step1
 
-mint@mint ~/build-lab $ cd step1
+####mint@mint ~/build-lab $ cd step1
 
-mint@mint ~/build-lab/step1 $ cmake ..
+####mint@mint ~/build-lab/step1 $ cmake ..
 
 -- The C compiler identification is GNU 4.8.4
 -- The CXX compiler identification is GNU 4.8.4
@@ -84,7 +73,7 @@ mint@mint ~/build-lab/step1 $ cmake ..
 -- Generating done
 -- Build files have been written to: /home/mint/build-lab/step1
 
-mint@mint ~/build-lab/step1 $ make
+####mint@mint ~/build-lab/step1 $ make
 
 Scanning dependencies of target Tutorial
 [100%] Building CXX object CMakeFiles/Tutorial.dir/tutorial.cxx.o

@@ -236,6 +236,83 @@ CMakeLists.txt  MathFunctions  step1  TutorialConfig.h.in  tutorial.cxx
 -- Generating done
 -- Build files have been written to: /home/mint/build-lab/step2
 
+#Part 4
+####mint@mint ~/build-lab $ cat >> CMakeLists.txt
+
+install (TARGETS Tutorial DESTINATION bin)
+install (FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h"        
+         DESTINATION include)
+####mint@mint ~/build-lab $ cat >> CMakeLists.txt
+include(CTest)
+
+
+add_test (TutorialRuns Tutorial 25)
+ 
+add_test (TutorialComp25 Tutorial 25)
+ 
+set_tests_properties (TutorialComp25 
+  PROPERTIES PASS_REGULAR_EXPRESSION "25 is 5")
+ 
+
+add_test (TutorialNegative Tutorial -25)
+set_tests_properties (TutorialNegative
+  PROPERTIES PASS_REGULAR_EXPRESSION "-25 is 0")
+
+add_test (TutorialSmall Tutorial 0.0001)
+set_tests_properties (TutorialSmall
+  PROPERTIES PASS_REGULAR_EXPRESSION "0.0001 is 0.01")
+ 
+add_test (TutorialUsage Tutorial)
+set_tests_properties (TutorialUsage
+  PROPERTIES 
+  PASS_REGULAR_EXPRESSION "Usage:.*number")
+####mint@mint ~/build-lab $ ls
+CMakeLists.txt   step1             TutorialConfig.h.in  whatever2
+MathFunctions    step2             tutorial.cxx         whatever3
+MathFunctions.h  TutorialConfig.h  whatever             whatever4
+####mint@mint ~/build-lab $ mkdir step3
+####mint@mint ~/build-lab $ cd step3
+####mint@mint ~/build-lab/step3 $ cmake ..
+-- The C compiler identification is GNU 4.8.4
+-- The CXX compiler identification is GNU 4.8.4
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/mint/build-lab/step3
+####mint@mint ~/build-lab/step3 $ make
+Scanning dependencies of target MathFunctions
+[ 50%] Building CXX object MathFunctions/CMakeFiles/MathFunctions.dir/mysqrt.cxx.o
+Linking CXX static library libMathFunctions.a
+[ 50%] Built target MathFunctions
+Scanning dependencies of target Tutorial
+[100%] Building CXX object CMakeFiles/Tutorial.dir/tutorial.cxx.o
+Linking CXX executable Tutorial
+[100%] Built target Tutorial
+####mint@mint ~/build-lab/step3 $ ctest
+Test project /home/mint/build-lab/step3
+    Start 1: TutorialRuns
+1/5 Test #1: TutorialRuns .....................   Passed    0.00 sec
+    Start 2: TutorialComp25
+2/5 Test #2: TutorialComp25 ...................   Passed    0.00 sec
+    Start 3: TutorialNegative
+3/5 Test #3: TutorialNegative .................   Passed    0.00 sec
+    Start 4: TutorialSmall
+4/5 Test #4: TutorialSmall ....................   Passed    0.00 sec
+    Start 5: TutorialUsage
+5/5 Test #5: TutorialUsage ....................   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =   0.01 sec
+
+
 #Part5
 mint@mint ~/build_lab/step_4_5 $ cd ..
 mint@mint ~/build_lab $ ls

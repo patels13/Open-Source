@@ -236,7 +236,7 @@ CMakeLists.txt  MathFunctions  step1  TutorialConfig.h.in  tutorial.cxx
 -- Generating done
 -- Build files have been written to: /home/mint/build-lab/step2
 
-#Part 4
+#Part 3
 ####mint@mint ~/build-lab $ cat >> CMakeLists.txt
 
 install (TARGETS Tutorial DESTINATION bin)

@@ -355,15 +355,151 @@ Linking CXX executable Tutorial
 [100%] Built target Tutorial
 
 
-#Part5
-mint@mint ~/build_lab/step_4_5 $ cd ..
-mint@mint ~/build_lab $ ls
-CMakeLists.txt   step1   step_3    step_infinity
-MathFunctions    step_1  step_4_5  TutorialConfig.h.in
-MathFunctions.h  step_2  step4_5   tutorial.cxx
-mint@mint ~/build_lab $ mkdir step--4--5
-mint@mint ~/build_lab $ cd step--4--5
-mint@mint ~/build_lab/step--4--5 $ cmake ..
+#Part 5
+####mint@mint ~/build-lab $ cd MathFunctions
+####mint@mint ~/build-lab/MathFunctions $ cat > MakeTable.cxx
+// A simple program that builds a sqrt table 
+
+ 
+int main (int argc, char *argv[])
+{
+  int i;
+  double result;
+ 
+  // make sure we have enough arguments
+  if (argc < 2)
+    {
+    return 1;
+    }
+  
+  // open the output file
+  FILE *fout = fopen(argv[1],"w");
+  if (!fout)
+    {
+    return 1;
+    }
+  
+  // create a source file with a table of square roots
+  fprintf(fout,"double sqrtTable[] = {\n");
+  for (i = 0; i < 10; ++i)
+    {
+    result = sqrt(static_cast<double>(i));
+    fprintf(fout,"%g,\n",result);
+    }
+ 
+  // close the table with a zero
+  fprintf(fout,"0};\n");
+  fclose(fout);
+  return 0;
+}
+####mint@mint ~/build-lab/MathFunctions $ cd ..
+####mint@mint ~/build-lab $ ls
+CMakeLists.txt   step1  step4                tutorial.cxx  whatever3
+MathFunctions    step2  TutorialConfig.h     whatever      whatever4
+MathFunctions.h  step3  TutorialConfig.h.in  whatever2
+####mint@mint ~/build-lab $ cat > CMakeLists.txt
+cmake_minimum_required (VERSION 2.6)
+project (Tutorial)
+include(CTest)
+ 
+set (Tutorial_VERSION_MAJOR 1)
+set (Tutorial_VERSION_MINOR 0)
+
+include (${CMAKE_ROOT}/Modules/CheckFunctionExists.cmake)
+ 
+check_function_exists (log HAVE_LOG)
+check_function_exists (exp HAVE_EXP)
+ 
+
+option(USE_MYMATH 
+  "Use tutorial provided math implementation" ON)
+ 
+
+configure_file (
+  "${PROJECT_SOURCE_DIR}/TutorialConfig.h.in"
+  "${PROJECT_BINARY_DIR}/TutorialConfig.h"
+  )
+
+include_directories ("${PROJECT_BINARY_DIR}")
+ 
+if (USE_MYMATH)
+  include_directories ("${PROJECT_SOURCE_DIR}/MathFunctions")
+  add_subdirectory (MathFunctions)
+  set (EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)
+endif (USE_MYMATH)
+ 
+
+add_executable (Tutorial tutorial.cxx)
+target_link_libraries (Tutorial  ${EXTRA_LIBS})
+
+install (TARGETS Tutorial DESTINATION bin)
+install (FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h"        
+         DESTINATION include)
+ 
+
+add_test (TutorialRuns Tutorial 25)
+ 
+
+add_test (TutorialUsage Tutorial)
+set_tests_properties (TutorialUsage
+  PROPERTIES 
+  PASS_REGULAR_EXPRESSION "Usage:.*number"
+  )
+ 
+
+macro (do_test arg result)
+  add_test (TutorialComp${arg} Tutorial ${arg})
+  set_tests_properties (TutorialComp${arg}
+    PROPERTIES PASS_REGULAR_EXPRESSION ${result}
+    )
+endmacro (do_test)
+ 
+
+do_test (4 "4 is 2")
+do_test (9 "9 is 3")
+do_test (5 "5 is 2.236")
+do_test (7 "7 is 2.645")
+do_test (25 "25 is 5")
+do_test (-25 "-25 is 0")
+do_test (0.0001 "0.0001 is 0.01")
+####mint@mint ~/build-lab $ cat > TutorialConfig.h.in
+// the configured options and settings for Tutorial
+define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
+define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
+cmakedefine USE_MYMATH
+ 
+// does the platform provide exp and log functions?
+cmakedefine HAVE_LOG
+cmakedefine HAVE_EXP
+####mint@mint ~/build-lab $ cd MathFunctions
+####mint@mint ~/build-lab/MathFunctions $ ls
+CMakeLists.txt  MakeTable.cxx  mysqrt.cxx
+####mint@mint ~/build-lab/MathFunctions $ cat > CMakeLists.txt
+ first we add the executable that generates the table
+add_executable(MakeTable MakeTable.cxx)
+ add the command to generate the source code
+add_custom_command (
+  OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/Table.h
+  DEPENDS MakeTable
+  COMMAND MakeTable ${CMAKE_CURRENT_BINARY_DIR}/Table.h
+  )
+ add the binary tree directory to the search path 
+ for include files
+include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
+ 
+ add the main library
+add_library(MathFunctions mysqrt.cxx ${CMAKE_CURRENT_BINARY_DIR}/Table.h)
+ 
+install (TARGETS MathFunctions DESTINATION bin)
+install (FILES MathFunctions.h DESTINATION include)
+####mint@mint ~/build-lab/MathFunctions $ cd ..
+####mint@mint ~/build-lab $ ls
+CMakeLists.txt   step1  step4             TutorialConfig.h.in  whatever2
+MathFunctions    step2  test              tutorial.cxx         whatever3
+MathFunctions.h  step3  TutorialConfig.h  whatever             whatever4
+####mint@mint ~/build-lab $ mkdir step5
+####mint@mint ~/build-lab $ cd step5
+####mint@mint ~/build-lab/step5 $ cmake ..
 -- The C compiler identification is GNU 4.8.4
 -- The CXX compiler identification is GNU 4.8.4
 -- Check for working C compiler: /usr/bin/cc
@@ -380,8 +516,8 @@ mint@mint ~/build_lab/step--4--5 $ cmake ..
 -- Looking for exp - not found
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/mint/build_lab/step--4--5
-mint@mint ~/build_lab/step--4--5 $ make
+-- Build files have been written to: /home/mint/build-lab/step5
+####mint@mint ~/build-lab/step5 $ make
 Scanning dependencies of target MakeTable
 [ 25%] Building CXX object MathFunctions/CMakeFiles/MakeTable.dir/MakeTable.cxx.o
 Linking CXX executable MakeTable
@@ -395,8 +531,8 @@ Scanning dependencies of target Tutorial
 [100%] Building CXX object CMakeFiles/Tutorial.dir/tutorial.cxx.o
 Linking CXX executable Tutorial
 [100%] Built target Tutorial
-mint@mint ~/build_lab/step--4--5 $ ctest
-Test project /home/mint/build_lab/step--4--5
+####mint@mint ~/build-lab/step5 $ ctest
+Test project /home/mint/build-lab/step5
     Start 1: TutorialRuns
 1/9 Test #1: TutorialRuns .....................   Passed    0.00 sec
     Start 2: TutorialUsage
@@ -419,3 +555,4 @@ Test project /home/mint/build_lab/step--4--5
 100% tests passed, 0 tests failed out of 9
 
 Total Test time (real) =   0.02 sec
+

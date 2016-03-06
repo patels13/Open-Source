@@ -312,6 +312,9 @@ Test project /home/mint/build-lab/step3
 
 Total Test time (real) =   0.01 sec
 
+![image](https://cloud.githubusercontent.com/assets/16493078/13551645/214c2386-e30f-11e5-82f6-a0177b0c63d3.png)
+
+
 
 #Part5
 mint@mint ~/build_lab/step_4_5 $ cd ..

@@ -314,6 +314,45 @@ Total Test time (real) =   0.01 sec
 
 ![image](https://cloud.githubusercontent.com/assets/16493078/13551645/214c2386-e30f-11e5-82f6-a0177b0c63d3.png)
 
+#Part 4
+####mint@mint ~/build-lab $ cat >> CMakeLists.txt
+does this system provide the log and exp functions?
+include (CheckFunctionExists)
+check_function_exists (log HAVE_LOG)
+check_function_exists (exp HAVE_EXP)
+####mint@mint ~/build-lab $ cat >> TutorialConfig.h.in
+// does the platform provide exp and log functions?
+cmakedefine HAVE_LOG
+cmakedefine HAVE_EXP
+####mint@mint ~/build-lab $ mkdir step4
+####mint@mint ~/build-lab $ cd step4
+####mint@mint ~/build-lab/test $ cmake ..
+-- The C compiler identification is GNU 4.8.4
+-- The CXX compiler identification is GNU 4.8.4
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Looking for log
+-- Looking for log - not found
+-- Looking for exp
+-- Looking for exp - not found
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/mint/build-lab/test
+####mint@mint ~/build-lab/test $ make
+Scanning dependencies of target MathFunctions
+[ 50%] Building CXX object MathFunctions/CMakeFiles/MathFunctions.dir/mysqrt.cxx.o
+Linking CXX static library libMathFunctions.a
+[ 50%] Built target MathFunctions
+Scanning dependencies of target Tutorial
+[100%] Building CXX object CMakeFiles/Tutorial.dir/tutorial.cxx.o
+Linking CXX executable Tutorial
+[100%] Built target Tutorial
 
 
 #Part5

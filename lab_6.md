@@ -40,4 +40,12 @@ First commit: Jan 31, 2016
 Latest commit: Mar 8, 2016
 Current branches: 1`
 
+###GITSTATS
+CuBI had more lines of code in GitStats than was listed in the project when running git. The dates of the first and last
+commit are the same. Also, the number of contributors used to be 4. 
+###VIDEOS
+fe-cli:
 https://youtu.be/KWldlDkG7O8
+It seems Kevin Zhang was the main leader and contributor to this project. 
+
+

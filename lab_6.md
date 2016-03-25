@@ -46,6 +46,24 @@ commit are the same. Also, the number of contributors used to be 4.
 ###VIDEOS
 fe-cli:
 https://youtu.be/KWldlDkG7O8
-It seems Kevin Zhang was the main leader and contributor to this project. 
+It seems Kevin Zhang was the main leader and contributor to this project as he made the most commits
+and has been staying on this project for a long time.
+
+CuBl: https://youtu.be/yDnqUu07QlE
+Seems main leader was Wyler McAninch-Ruenzi----> made most commits and initialized the master branch
+
+
+Fundo: https://youtu.be/1jhqha5UJBQ
+Seems main leader was Lucas Silva----->made most commits and still on this project
+
+
+Ringtone-Randomizer: https://youtu.be/vNk2pYIXBzw
+Cordom2 seems like the main leader
+
+
+Venue: https://youtu.be/YQuVC4O2qyE
+Severin Ibarluzea is the main leader for this one
+
+
 
 

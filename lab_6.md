@@ -41,15 +41,21 @@ Latest commit: Mar 8, 2016
 Current branches: 1`
 
 ###GITSTATS
+FE-CLI
 <img width="1280" alt="fe-cli" src="https://cloud.githubusercontent.com/assets/16493078/14036882/3b92a9ae-f214-11e5-9be5-37af0cac9c47.png">
+VENUE
 <img width="1280" alt="venue" src="https://cloud.githubusercontent.com/assets/16493078/14036885/4203e6e0-f214-11e5-992b-9cc9878724d8.png">
+Ringtone-Randomizer
 <img width="1280" alt="ringtone-randomizer" src="https://cloud.githubusercontent.com/assets/16493078/14036922/7a851fca-f214-11e5-9dae-3fb760231d24.png">
+FUNDO
 <img width="1280" alt="fundo" src="https://cloud.githubusercontent.com/assets/16493078/14036946/bf913180-f214-11e5-944f-1b7a1e8f478e.png">
-
+CUBL
 <img width="1280" alt="cubl" src="https://cloud.githubusercontent.com/assets/16493078/14036949/cdeb4d4c-f214-11e5-83cf-cc26de4a0d60.png">
 
-CuBI had more lines of code in GitStats than was listed in the project when running git. The dates of the first and last
+Some projects had more lines of code in GitStats than was listed in the project when running git. The opppsite
+was also true for some of these. The dates of the first and last
 commit are the same. Also, the number of contributors used to be 4. 
+
 ###VIDEOS
 fe-cli:
 https://youtu.be/D2HUIF-Ehms

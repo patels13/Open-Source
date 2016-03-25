@@ -45,7 +45,7 @@ CuBI had more lines of code in GitStats than was listed in the project when runn
 commit are the same. Also, the number of contributors used to be 4. 
 ###VIDEOS
 fe-cli:
-https://youtu.be/KWldlDkG7O8
+https://youtu.be/D2HUIF-Ehms
 It seems Kevin Zhang was the main leader and contributor to this project as he made the most commits
 and has been staying on this project for a long time.
 

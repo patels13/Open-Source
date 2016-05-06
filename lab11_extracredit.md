@@ -11,6 +11,8 @@ Communication Modes: website,github,slack
 NUMBER 3
 
 Part 1
+
+![lab11_part2](https://cloud.githubusercontent.com/assets/16493078/15078056/6213559c-137f-11e6-9e72-831c024df364.png)
  
 Using:
 /me says hi
